@@ -1,2 +1,59 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Two-Player Trivia Battle Game</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="./app.js"></script>
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .question-section {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Player Setup -->
+    <div id="player-setup" class="text-center">
+      <h1>Two-Player Trivia Battle Game</h1>
+      <div class="form-group">
+        <input type="text" id="player1" class="form-control" placeholder="Enter Player 1 Name">
+      </div>
+      <div class="form-group">
+        <input type="text" id="player2" class="form-control" placeholder="Enter Player 2 Name">
+      </div>
+      <button class="btn btn-primary btn-block" onclick="startGame()">Start Game</button>
+    </div>
+
+    <!-- Category Selection -->
+    <div id="category-selection" class="text-center" style="display: none;">
+      <h2>Select Trivia Category</h2>
+      <select id="category-dropdown" class="form-control mb-3"></select>
+      <button class="btn btn-success btn-block" onclick="fetchQuestions()">Start Trivia</button>
+    </div>
+
+    <!-- Question Section -->
+    <div id="question-section" class="question-section text-center">
+      <h3 id="player-turn"></h3>
+      <p id="question-text"></p>
+      <div id="answers" class="d-flex justify-content-around"></div>
+    </div>
+
+    <!-- Game End -->
+    <div id="game-end" class="text-center" style="display: none;">
+      <h2>Game Over</h2>
+      <p id="final-score"></p>
+      <button class="btn btn-primary" onclick="resetGame()">Play Again</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
