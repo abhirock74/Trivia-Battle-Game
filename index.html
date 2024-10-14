@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Two-Player Trivia Battle Game</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="./app.js"></script>
   <style>
     body {
       background-color: #f8f9fa;
@@ -19,7 +18,7 @@
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="main">
     <!-- Player Setup -->
     <div id="player-setup" class="text-center">
       <h1>Two-Player Trivia Battle Game</h1>
@@ -41,7 +40,7 @@
 
     <!-- Question Section -->
     <div id="question-section" class="question-section text-center">
-      <h3 id="player-turn"></h3>
+      <h3 id="player-turn" class="p-4 rounded"></h3>
       <p id="question-text"></p>
       <div id="answers" class="d-flex justify-content-around"></div>
     </div>
@@ -53,7 +52,8 @@
       <button class="btn btn-primary" onclick="resetGame()">Play Again</button>
     </div>
   </div>
+  <!-- audio files -->
 
-  <script src="script.js"></script>
+  <script src="./app.js"></script>
 </body>
 </html>
