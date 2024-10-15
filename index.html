@@ -28,14 +28,14 @@
       <div class="form-group">
         <input type="text" id="player2" class="form-control" placeholder="Enter Player 2 Name">
       </div>
-      <button class="btn btn-primary btn-block" onclick="startGame()">Start Game</button>
+      <button class="btn btn-primary btn-block" onclick="{startGame(); playClick();}">Start Game</button>
     </div>
 
     <!-- Category Selection -->
     <div id="category-selection" class="text-center" style="display: none;">
       <h2>Select Trivia Category</h2>
       <select id="category-dropdown" class="form-control mb-3"></select>
-      <button class="btn btn-success btn-block" onclick="fetchQuestions()">Start Trivia</button>
+      <button class="btn btn-success btn-block" onclick="{fetchQuestions(); playClick()}">Start Trivia</button>
     </div>
 
     <!-- Question Section -->

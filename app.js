@@ -5,8 +5,10 @@ let scores = { 1: 0, 2: 0 };
 let currentQuestionIndex = 0;
 let questions = [];
 let selectedCategory = '';
+let backgroundAudio;
 
 const API_BASE_URL = 'https://the-trivia-api.com/api';
+
 function startGame() {
   player1 = document.getElementById('player1').value.trim();
   player2 = document.getElementById('player2').value.trim();
@@ -32,6 +34,8 @@ async function fetchCategories() {
 }
 
 async function fetchQuestions() {
+  delay(1000);
+  startBackgroundAudio();
   selectedCategory = document.getElementById('category-dropdown').value;
   const difficulties = ['easy', 'medium', 'hard'];
   questions = [];
@@ -76,7 +80,7 @@ function delay(ms) {
 }
 
 async function checkAnswer(selectedAnswer) {
-  playClick();
+  
   const question = questions[currentQuestionIndex];
   // let ans = document.getElementById('answers');
   console.log(selectedAnswer);
@@ -84,9 +88,11 @@ async function checkAnswer(selectedAnswer) {
     const points = getPointsForDifficulty(question.difficulty);
     scores[currentPlayer] += points;
     // alert('Correct! +' + points + ' points');
+    correct();
     document.body.style.backgroundColor = 'green';
     await delay(1000);
   } else {
+    wrong();
     document.body.style.backgroundColor = 'red';
     // alert('Wrong answer!');
     await delay(1000);
@@ -113,6 +119,7 @@ function getPointsForDifficulty(difficulty) {
 
 
 function endGame() {
+  stopBackgroundAudio();
   document.getElementById('question-section').style.display = 'none';
   document.getElementById('game-end').style.display = 'block';
 
@@ -142,8 +149,33 @@ function playClick() {
     console.error('Audio playback failed:', error);
   });
 }
-
-
+function correct() {
+  const audio = new Audio('./Sound/correct.wav');
+  
+  audio.play().catch(error => {
+    console.error('Audio playback failed:', error);
+  });
+}
+function wrong() {
+  const audio = new Audio('./Sound/wrong.wav');
+  
+  audio.play().catch(error => {
+    console.error('Audio playback failed:', error);
+  });
+}
+function startBackgroundAudio() {
+  backgroundAudio = new Audio('./Sound/background.wav');
+  backgroundAudio.loop = true;
+  backgroundAudio.play().catch(error => {
+    console.error('Audio playback failed:', error);
+  });
+}
+function stopBackgroundAudio() {
+  if (backgroundAudio) {
+    backgroundAudio.pause();   
+    backgroundAudio.currentTime = 0; 
+  }
+}
 function resetGame() {
   scores = { 1: 0, 2: 0 };
   currentQuestionIndex = 0;
